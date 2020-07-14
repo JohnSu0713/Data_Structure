@@ -793,14 +793,14 @@ public:
         {
             delete[] this->ptrArr; //釋放連續記憶體
             this->ptrArr = NULL;
-            std::cout << "Array has been destructed." << std::endl;
+            std::cout << "Array has been destructed!!" << std::endl;
         }
     }
 };
 
 int main(int argc, char const *argv[])
 {
-    printf("Hello Arrray!!\n");
+    printf("Hello Array!!\n");
 
     Array arr_1;
     // arr_1.init_rand();
