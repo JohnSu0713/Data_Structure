@@ -793,6 +793,7 @@ public:
         {
             delete[] this->ptrArr; //釋放連續記憶體
             this->ptrArr = NULL;
+            std::cout << "Array has been destructed." << std::endl;
         }
     }
 };
