@@ -803,7 +803,7 @@ int main(int argc, char const *argv[])
     printf("Hello Array!!\n");
 
     Array arr_1;
-    // arr_1.init_rand();
+
     arr_1.find_duplicated_unsorted();
     arr_1.display();
     arr_1.info();
