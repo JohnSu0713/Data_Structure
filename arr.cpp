@@ -787,6 +787,23 @@ public:
         }
     }
 
+    int two_sum(int target)
+    {
+        for (size_t i = 0; i < this->length - 1; i++)
+        {
+            for (size_t j = i + 1; j < this->length; j++)
+            {
+                if (this->ptrArr[j] + this->ptrArr[i] == target)
+                {
+                    std::cout << "Find Target index = " << j << std::endl;
+                    return j;
+                }
+            }
+        }
+        std::cout << "nothing find..." << std::endl;
+        return -1;
+    }
+
     ~Array()
     {
         if (this->ptrArr != NULL)
@@ -804,9 +821,8 @@ int main(int argc, char const *argv[])
 
     Array arr_1;
 
-    arr_1.find_duplicated_unsorted();
+    arr_1.two_sum(10);
     arr_1.display();
-    arr_1.info();
 
     return 0;
 }
