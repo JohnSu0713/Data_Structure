@@ -2,6 +2,8 @@
 #include <string>
 #include <stdlib.h> /* srand, rand */
 #include <time.h>   /* time */
+#include <unordered_map>
+#include <vector>
 using namespace std;
 
 class Array
@@ -804,6 +806,38 @@ public:
         return -1;
     }
 
+    int two_sum_hashtable(int target)
+    {
+        //unordered_map<value, count> mp;
+
+        unordered_map<int, int> mp;
+
+        //裝入unordered_map
+        for (size_t i = 0; i < this->length; i++)
+        {
+            mp[this->ptrArr[i]] = i;
+            //key = Array_value, value = Array_index
+        }
+
+        vector<int> res;
+
+        //找尋
+        for (int i = 0; i < this->length; i++)
+        {
+            int t = target - this->ptrArr[i];
+            if (mp.count(t) && mp[t] != i)
+            {
+                res.push_back(i);
+                res.push_back(mp[t]);
+                std::cout << "Found Target index = " << mp[t] << " and " << i << std::endl;
+                std::cout << "Found Target value = " << this->ptrArr[mp[t]] << std::endl;
+                return mp[t];
+            }
+        }
+        std::cout << "Not found." << std::endl;
+        return -1;
+    }
+
     ~Array()
     {
         if (this->ptrArr != NULL)
@@ -821,7 +855,7 @@ int main(int argc, char const *argv[])
 
     Array arr_1;
 
-    arr_1.two_sum(10);
+    arr_1.two_sum_hashtable(10);
     arr_1.display();
 
     return 0;
