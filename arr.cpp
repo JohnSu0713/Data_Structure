@@ -4,6 +4,7 @@
 #include <time.h>   /* time */
 #include <unordered_map>
 #include <vector>
+#include <array>
 using namespace std;
 
 class Array
@@ -789,7 +790,7 @@ public:
         }
     }
 
-    int two_sum(int target)
+    int two_sum_unsorted(int target)
     {
         for (size_t i = 0; i < this->length - 1; i++)
         {
@@ -838,6 +839,61 @@ public:
         return -1;
     }
 
+    vector<int> two_sum_sorted(int target)
+    {
+        //i從頭開始iterate, j從尾開始往回iterator
+        int i = 0;
+        int j = this->length - 1;
+        vector<int> res;
+        while (i != j)
+        {
+            if (this->ptrArr[i] + this->ptrArr[j] > target)
+            {
+                j--;
+            }
+            else if (this->ptrArr[i] + this->ptrArr[j] < target)
+            {
+                i++;
+            }
+            else if (this->ptrArr[i] + this->ptrArr[j] == target)
+            {
+                res.push_back(i);
+                res.push_back(j);
+                j--;
+                i++;
+            }
+        }
+        for (size_t i = 0; i < res.size(); i++)
+        {
+            std::cout << res[i] << std::endl;
+        }
+
+        return res;
+    }
+
+    unordered_map<string, int> find_minMax_singleScan()
+    {
+        unordered_map<string, int> mp;
+        mp["min"] = this->ptrArr[0];
+        mp["max"] = this->ptrArr[0];
+
+        for (int i = 0; i < this->length; i++)
+        {
+            if (this->ptrArr[i] < mp["min"])
+            {
+                mp["min"] = this->ptrArr[i];
+            }
+            else if (this->ptrArr[i] > mp["max"])
+            {
+                mp["max"] = this->ptrArr[i];
+            }
+        }
+
+        std::cout << "min = " << mp["min"] << std::endl;
+        std::cout << "Max = " << mp["max"] << std::endl;
+        return mp;
+    }
+
     ~Array()
     {
         if (this->ptrArr != NULL)
@@ -855,7 +911,7 @@ int main(int argc, char const *argv[])
 
     Array arr_1;
 
-    arr_1.two_sum_hashtable(10);
+    arr_1.find_minMax_singleScan();
     arr_1.display();
 
     return 0;
